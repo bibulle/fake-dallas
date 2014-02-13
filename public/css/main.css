@@ -1,0 +1,148 @@
+/*------------------------- */
+/* Base class
+/*------------------------- */
+body {
+	font-size: 12px;
+}
+
+.hero-unit {
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 60px;
+	padding-left: 60px;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.hero-unit h1 {
+	font-size: 2.5em;
+}
+
+version {
+	font-size: 0.2em;
+	font-style: italic;
+	font-weight: normal;
+	padding-left: 10px;
+}
+
+.alert {
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	padding-right: 14px;
+}
+
+.search-query {
+	margin-left: 10px;
+}
+
+.strong {
+	font-weight: bold;
+}
+
+.temporary {
+	font-style: italic;
+	opacity: 0.5;
+	filter: alpha(opacity = 50); /* For IE8 and earlier */
+}
+/*------------------------- */
+/* Size
+/*------------------------- */
+.container {
+	//min-width: 1200px;
+	width: 100%;
+}
+
+.navbar-fixed-top .container {
+	min-width: inherit;
+	width: inherit;
+}
+
+/*------------------------- */
+/* List
+/*------------------------- */
+#tests {
+	margin-right: 8px;
+	margin-left: 8px;
+}
+
+#tests .row-fluid [class*="span"] {
+	min-height:	0;
+}
+
+#tests .test {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	border-color: #BBB;
+	border-width: 1px;
+	border-style: solid;
+}
+/* #tests .test div {
+	border-color: #BB0;
+	border-width: 1px;
+	border-style: solid;
+} */
+#tests .test .name {
+	font-size: 2em;
+	font-weight: bold;
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#tests .test .updateDate {
+	font-size: 1em;
+	font-weight: bold;
+	padding-left: 6px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#tests .test .ip {
+	font-size: 1em;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#tests .requests {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	border-color: #BBB;
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 10px;
+}
+
+#tests .test .request.statusOK {
+	background-color: #EEE;
+}
+#tests .test .request.odd.statusOK {
+	background-color: #FFF;
+}
+#tests .test .request {
+	background-color: #ECC;
+}
+#tests .test .request.odd {
+	background-color: #FDD;
+}
+
+#tests .test .request .updateDate {
+	font-size: 1em;
+	font-weight: normal;
+	padding-left: 5px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+
+#tests .request .file, #tests .request.statusOK .status {
+	display: none;
+}
+#tests .request.statusOK .file , #tests .request .status {
+	display: block;
+}

@@ -1,7 +1,64 @@
-@(message: String)
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>@play.api.Play.current.configuration.getString("app.name") (@play.api.Play.current.configuration.getString("app.version"))</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
-}
+  <link href="@routes.Assets.at("bootstrap/css/bootstrap.css")" media="all" rel="stylesheet" type="text/css" />
+  <link href="@routes.Assets.at("bootstrap/css/bootstrap-editable.css")" media="all" rel="stylesheet" type="text/css" />
+  <link href="@routes.Assets.at("jquery/jquery.fileupload-ui.css")" media="all" rel="stylesheet" type="text/css" />
+  <link href="@routes.Assets.at("css/main.css")" media="all" rel="stylesheet" type="text/css" />
+
+  <link href="@routes.Assets.at("favicon.ico")" rel="icon" type="image/x-icon">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icons/touch-icon-144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icons/touch-icon-114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icons/touch-icon-72.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icons/touch-icon-57.png">
+</head>
+<body ng-app="tests">
+
+  <div class="container">
+<header class="header">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <!-- <li class="divider-vertical"></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+		<div message class="alert alert-{{message.type}} fade" ng-class="{fade: (message.text == ''), in: (message.text != '')}">
+  		<!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+  		<span ng-bind-html="message.text"></span>&nbsp;
+		</div>
+		<div message class="alert alert-{{message.type}} fade" ng-class="{fade: !loading, in: loading}">
+  		<!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+  		<span>LOADING...</span>&nbsp;
+		</div>
+ 	  <div class="hero-unit">
+      <H1>@play.api.Play.current.configuration.getString("app.name")<version>@play.api.Play.current.configuration.getString("app.version")</version></H1>
+      <p>Dallas mock tool</p>
+    </div>
+  	<div ng-view></div>
+  </div>
+  <script src="@routes.Assets.at("jquery/jquery-1.8.3.min.js")"></script>  
+  <script src="@routes.Assets.at("jquery/jquery.ui.widget.js")"></script>
+  <script src="@routes.Assets.at("jquery/jquery.fileupload.js")"></script>
+  <script src="@routes.Assets.at("angularjs/angular.js")"></script>            
+  <script src="@routes.Assets.at("angularjs/angular-resource.js")"></script>
+  <script src="@routes.Assets.at("angularjs/angular-sanitize.js")"></script>             
+  <script src="@routes.Assets.at("bootstrap/js/bootstrap.js")"></script>     
+  <script src="@routes.Assets.at("bootstrap/js/bootstrap-editable.js")"></script>     
+  <script src="@routes.Assets.at("jquery/jcanvas.min.js")"></script>
+  <script src="@routes.Assets.at("js/tests.js")"></script>
+  <script src="@routes.Assets.at("js/testService.js")"></script>
+  <script src="@routes.Assets.at("js/uploadManager.js")"></script>
+
+
+</body>
+</html>
