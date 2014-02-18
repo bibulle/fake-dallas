@@ -37,12 +37,13 @@ public class Application extends Controller {
 	 * @return
 	 */
 	public static Result init(String name) {
+        Logger.debug("Request : init "+name);
 
 		String ip = request().remoteAddress();
 
 		// Save the test
 		Test theTest = new Test();
-		theTest.ip = ip;
+		theTest.ip = null;
 		theTest.name = name;
 
 		theTest.save();
@@ -56,6 +57,7 @@ public class Application extends Controller {
 	 * @return
 	 */
 	public static Result get(String url) {
+        Logger.debug("Request : get "+url);
 
 		String ip = request().remoteAddress();
 		// Get current test

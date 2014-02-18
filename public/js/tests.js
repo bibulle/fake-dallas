@@ -129,9 +129,16 @@ function ListCtrl($scope, TestBackend, $rootScope, $timeout, $log) {
 	// start pooling
 	(function tick() {
 		$scope.tests = TestBackend.query(function() {
-			$timeout(tick, 60*1000);
+			$timeout(tick, 20*1000);
 		});
 	})();
+
+    $scope.deleteTest = function(obj) {
+        TestBackend.delete(obj, function() {
+            $scope.tests = TestBackend.query();
+        });
+
+    };
 
 	// $scope.$watch('properties', function (newValue, oldValue, scope) {
 	// alert("properties changed "+newval)

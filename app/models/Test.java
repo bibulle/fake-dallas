@@ -11,6 +11,7 @@ import javax.persistence.OrderBy;
 
 import com.avaje.ebean.Expr;
 
+import com.avaje.ebean.ExpressionList;
 import play.Logger;
 import play.db.ebean.Model;
 
@@ -40,8 +41,8 @@ public class Test extends Model {
 	public void save() {
 	
 		// Only keep the last ten
-		List<Test> oldTests = Test.find.where().eq("ip", ip).orderBy("updateDate desc").findList();
-		while (oldTests.size() > 10) {
+		List<Test> oldTests = Test.find.orderBy("updateDate desc").findList();
+		while (oldTests.size() > 20) {
 			oldTests.get(oldTests.size()-1).delete();
 			oldTests.remove(oldTests.size()-1);
 		}
@@ -50,9 +51,20 @@ public class Test extends Model {
 	}
 	
 	public static Test getCurrentTest(String ip) {
-		List<Test> tests = Test.find.where().eq("ip", ip).orderBy("updateDate desc").findList();
-		
+		List<Test> tests = Test.find.where().or(Expr.eq("ip", ip), Expr.isNull("ip")).orderBy("updateDate desc").findList();
+
+        Logger.debug("----------------");
+        for (Test test : tests) {
+            Logger.debug(test.ip+" "+test.updateDate);
+        }
+        Logger.debug("----------------");
+
 		if (tests.size() != 0) {
+            if (tests.get(0).ip == null) {
+                tests.get(0).ip = ip;
+                tests.get(0).update();
+            }
+
 			return tests.get(0);
 		} else {
 			return null;

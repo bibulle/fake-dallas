@@ -25,6 +25,7 @@ import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.node.POJONode;
 
+import play.Logger;
 import play.libs.F.*;
 import play.libs.Akka;
 import play.libs.Json;
@@ -62,6 +63,20 @@ public class Tests extends Controller {
 			return badRequest(e.getMessage());
 		}
 	}
+
+    /**
+     * Delete a test
+     */
+    public static Result delete(Long id) {
+        Logger.debug("Request : delete " + id);
+
+        Test test = Test.find.byId(id);
+        if (test != null) {
+            test.delete();
+        }
+
+        return ok();
+    }
 
 //	private static Map<WebSocket.In<JsonNode>, WebSocket.Out<JsonNode>> webSocketOuts = new HashMap<WebSocket.In<JsonNode>, WebSocket.Out<JsonNode>>();
 //
