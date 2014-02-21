@@ -61,8 +61,10 @@ public class Test extends Model {
 
 		if (tests.size() != 0) {
             if (tests.get(0).ip == null) {
+                Test t = Test.find.byId(tests.get(0).id);
+                t.ip = ip;
+                t.update();
                 tests.get(0).ip = ip;
-                tests.get(0).update();
             }
 
 			return tests.get(0);

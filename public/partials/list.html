@@ -1,9 +1,9 @@
 <div id="tests">
  	<div ng-repeat="test in tests" class="test row-fluid">
         <div class="span12 id row">{{test.id}}<i class="icon-trash" ng-click="deleteTest(test)"></i></div>
-        <div class="span2 name">{{test.name}}</div>
+        <div class="span8 name">{{test.name}}</div>
 		<div class="span2 updateDate">{{test.updateDate | date:'yyyy-MM-dd HH:mm:ss'}}</div>
-		<div class="span8 ip">{{test.ip}}</div>
+		<div class="span2 ip">{{test.ip}}</div>
 		<div class="span2" style="margin-left: 0;">&nbsp;</div>
 		<div class="span9 requests"  ng-show="!!test.requests.length">
 			<div ng-repeat="req in test.requests" class="row-fluid request" ng-class-odd="'odd'" status-class='req'>
