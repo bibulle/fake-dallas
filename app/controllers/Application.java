@@ -36,14 +36,17 @@ public class Application extends Controller {
 	 * Init a test
 	 * @return
 	 */
-	public static Result init(String name) {
-        Logger.debug("Request : init "+name);
+	public static Result init(String name, String ip) {
+        Logger.debug("Request : init("+name+", "+ip+")");
 
-		String ip = request().remoteAddress();
+		//String ip = request().remoteAddress();
+        if ((ip != null) && (ip.trim().length() == 0)) {
+            ip = null;
+        }
 
 		// Save the test
 		Test theTest = new Test();
-		theTest.ip = null;
+		theTest.ip = ip;
 		theTest.name = name;
 
 		theTest.save();

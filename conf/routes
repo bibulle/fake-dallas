@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index()
 GET     /test                   	controllers.Tests.list
 DELETE  /test/:id                  	controllers.Tests.delete(id: Long)
-GET     /init/*name					controllers.Application.init(name)
+GET     /init/*name					controllers.Application.init(name, ip: String ?= null)
 
 
 # Map static resources from the /public folder to the /assets URL path
