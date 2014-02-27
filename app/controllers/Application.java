@@ -82,7 +82,7 @@ public class Application extends Controller {
 		// search for the bigger matching path
 		String theUrl = "/" + url;
 		String[] files = null;
-		File dir = null;
+		File dir;
 
 		while (((files == null) || (files.length == 0)) && (theUrl.length() != 0)) {
 			dir = new File(getFilePath(theTest, theUrl, null));
