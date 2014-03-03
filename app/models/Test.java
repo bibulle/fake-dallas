@@ -55,11 +55,11 @@ public class Test extends Model {
     public static Test getCurrentTest(String ip) {
         List<Test> tests = Test.find.where().or(Expr.eq("ip", ip), Expr.isNull("ip")).orderBy("updateDate desc").findList();
 
-        Logger.debug("----------------");
-        for (Test test : tests) {
-            Logger.debug(test.ip + " " + test.updateDate);
-        }
-        Logger.debug("----------------");
+        //Logger.debug("----------------");
+        //for (Test test : tests) {
+        //    Logger.debug(test.ip + " " + test.updateDate);
+        //}
+        //Logger.debug("----------------");
 
         if (tests.size() != 0) {
             if (tests.get(0).ip == null) {
