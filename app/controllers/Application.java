@@ -140,7 +140,13 @@ public class Application extends Controller {
 		theTest = Test.find.byId(theTest.id);
 		//Logger.info("NOW:    "+r.status + " " + r.file + " " + r.file.matches("^" + getFilePath(theTest, theUrl, null) + "/[^/]*$") + " " + getFilePath(theTest, theUrl, null));
 
-		return ok(new File(r.file));
+        if (nextPath.toLowerCase().matches(".*[.]json$")) {
+            response().setContentType("application/json");
+        } else if (nextPath.toLowerCase().matches(".*[.]htm[l]*$")) {
+            response().setContentType("text/html");
+        }
+
+            return ok(new File(r.file));
 	}
 
 	/**
