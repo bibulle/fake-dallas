@@ -44,9 +44,20 @@ public class Test extends Model {
 
         // Only keep the last ten
         List<Test> oldTests = Test.find.orderBy("updateDate desc").findList();
-        while (oldTests.size() > 20) {
-            oldTests.get(oldTests.size() - 1).delete();
-            oldTests.remove(oldTests.size() - 1);
+        while (oldTests.size() > 50) {
+            Test theTest = oldTests.get(oldTests.size() - 1);
+            // delete requests
+            for (Request r : theTest.requests) {
+                SqlUpdate update = Ebean.createSqlUpdate("DELETE FROM request WHERE id=:id")
+                        .setParameter("id", r.id);
+                update.execute();
+            }
+
+            // delete the test
+            SqlUpdate update = Ebean.createSqlUpdate("DELETE FROM test WHERE id=:id")
+                    .setParameter("id", oldTests.get(oldTests.size() - 1).id);
+            update.execute();
+            oldTests = Test.find.orderBy("updateDate desc").findList();
         }
 
         super.save();
