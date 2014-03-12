@@ -1,4 +1,4 @@
-// Modules to managed timeline
+// Modules to managed  ?
 angular.module('uploadManager', []).
   factory('uploadManager', function ($rootScope) {
     var _files = [];
@@ -20,7 +20,7 @@ angular.module('uploadManager', []).
         upload: function () {
             $.each(_files, function (index, file) {
                 file.submit()
-                	.error(function (jqXHR, textStatus, errorThrown) {
+                	.error(function (jqXHR) {
                 		$rootScope.appendMessageError(jqXHR.responseText);
                 	})
                 	.complete(function (result, textStatus, jqXHR) {

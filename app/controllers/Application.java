@@ -26,7 +26,7 @@ public class Application extends Controller {
 
 	/**
 	 * Home page
-	 * @return
+	 * @return the home page
 	 */
 	public static Result index() {
     return ok(index.render());
@@ -34,7 +34,7 @@ public class Application extends Controller {
 
 	/**
 	 * Init a test
-	 * @return
+	 * @return a json return
 	 */
 	public static Result init(String name, String ip) {
         Logger.debug("Request : init("+name+", "+ip+")");
@@ -57,7 +57,7 @@ public class Application extends Controller {
 
 	/**
 	 * Get a json file (within a test)
-	 * @return
+	 * @return the file content
 	 */
 	public static Result get(String url) {
         Logger.debug("Request : get "+url);
@@ -82,7 +82,7 @@ public class Application extends Controller {
 		// search for the bigger matching path
 		String theUrl = "/" + url;
 		String[] files = null;
-		File dir = null;
+		File dir;
 
 		while (((files == null) || (files.length == 0)) && (theUrl.length() != 0)) {
 			dir = new File(getFilePath(theTest, theUrl, null));
@@ -137,7 +137,7 @@ public class Application extends Controller {
 		r.status = "OK";
 		r.file = nextPath;
 		theTest.save();
-		theTest = Test.find.byId(theTest.id);
+		//theTest = Test.find.byId(theTest.id);
 		//Logger.info("NOW:    "+r.status + " " + r.file + " " + r.file.matches("^" + getFilePath(theTest, theUrl, null) + "/[^/]*$") + " " + getFilePath(theTest, theUrl, null));
 
         if (nextPath.toLowerCase().matches(".*[.]json$")) {
@@ -151,10 +151,10 @@ public class Application extends Controller {
 
 	/**
 	 * Calculate the file path (from BASE, test, service url and filename) 
-	 * @param theTest
-	 * @param theUrl
-	 * @param file
-	 * @return
+	 * @param theTest the test
+	 * @param theUrl the url
+	 * @param file and the file name
+	 * @return a path
 	 */
 	private static String getFilePath(Test theTest, String theUrl, String file) {
 		if (file != null) {
@@ -167,10 +167,10 @@ public class Application extends Controller {
 	/**
 	 * Send Json answer
 	 * 
-	 * @param status
-	 * @param mess
-	 * @param obj
-	 * @return
+	 * @param status ("OK" or "KO")
+	 * @param mess the message in the json returned
+	 * @param obj the data in the json
+	 * @return the json
 	 */
 	private static Result returnJson(String status, String mess, Object obj) {
 

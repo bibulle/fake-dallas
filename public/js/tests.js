@@ -7,17 +7,17 @@ angular.module('tests', [
     }).otherwise({
         redirectTo: '/'
     });
-}).directive('message',function ($timeout, $log) {
+}).directive('message',function ($timeout) {
     return {
-        controller: function ($scope, $element, $rootScope) {
+        controller: function ($scope, $element) {
             $scope.message = {
                 text: "",
                 type: "info",
                 date: new Date()
-            }
+            };
             $element.alert();
 
-            $scope.$watch('message', function (newVal, oldVal) {
+            $scope.$watch('message', function (newVal) {
                 if (newVal.text != "") {
                     if (angular.isDefined($scope.messageTimout)) {
                         $timeout.cancel($scope.messageTimout);
@@ -34,7 +34,7 @@ angular.module('tests', [
                     }
                 }
             }, true);
-        },
+        }
     }
 }).directive('statusClass',function () {
     return function (scope, elem, attrs) {
@@ -45,8 +45,8 @@ angular.module('tests', [
                 elem.removeClass('statusOK');
         });
     };
-}).run(function ($rootScope, $location, $log, $timeout) {
-    $rootScope.conf = {}
+}).run(function ($rootScope) {
+    $rootScope.conf = {};
 
     $rootScope.setMessageSuccess = function (message) {
         $rootScope.message.text = message;
@@ -72,51 +72,9 @@ angular.module('tests', [
         $rootScope.message.type = 'error';
     };
 
-    // Manage the WebSocket
-    // $rootScope.connectWebSocket = function() {
-    // var ws = new
-    // WebSocket("ws://"+$location.host()+":"+$location.port()+"/webSocket");
-    //
-    // ws.onopen = function() {
-    // console.log("Socket has been opened");
-    // $rootScope.refreshNeeded = true;
-    // $rootScope.$broadcast('properties_refresh_needed');
-    // }
-    // ws.onclose = function() {
-    // console.log("Socket has been closed");
-    // $rootScope.setMessageError("Connection to server lost");
-    // $timeout(function() {
-    // $rootScope.connectWebSocket();
-    // }, 5000, true);
-    //
-    // }
-    // ws.onmessage = function(message) {
-    // var data = JSON.parse(message.data);
-    // console.log("Socket message received");
-    // if (data.action == 'noRefreshNeeded') {
-    // $rootScope.refreshNeeded = false;
-    // }
-    // $rootScope.$broadcast('properties_'+data.action, data.property);
-    // }
-    //
-    // $rootScope.$on('properties_refresh_needed', function(event) {
-    // if ($rootScope.refreshNeeded) {
-    // msg = {
-    // action: "refresh",
-    // lastUpdateDate: $rootScope.lasUpdateDate,
-    // lastUpdateId: $rootScope.lasUpdateId,
-    // count: 30
-    // };
-    // ws.send(JSON.stringify(msg));
-    //
-    // }
-    // });
-    // }
-    // $rootScope.connectWebSocket();
-
 });
 
-function ListCtrl($scope, TestBackend, $rootScope, $timeout, $log) {
+function ListCtrl($scope, TestBackend, $rootScope, $timeout) {
 
     $scope.Math = window.Math;
 

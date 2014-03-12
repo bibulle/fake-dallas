@@ -1,18 +1,14 @@
 package models;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Expr;
+import com.avaje.ebean.SqlUpdate;
+import play.db.ebean.Model;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.*;
-
-import com.avaje.ebean.Ebean;
-import com.avaje.ebean.Expr;
-
-import com.avaje.ebean.ExpressionList;
-import com.avaje.ebean.SqlUpdate;
-import play.Logger;
-import play.db.ebean.Model;
 
 @Entity
 public class Test extends Model {
@@ -77,7 +73,7 @@ public class Test extends Model {
                 SqlUpdate update = Ebean.createSqlUpdate("UPDATE test SET ip=:ip WHERE id=:id")
                         .setParameter("ip", ip)
                         .setParameter("id", tests.get(0).id);
-                int rows = update.execute();
+                update.execute();
                 return getCurrentTest(ip);
             }
 
