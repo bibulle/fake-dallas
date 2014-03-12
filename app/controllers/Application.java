@@ -101,8 +101,8 @@ public class Application extends Controller {
 		if ((files == null) || (files.length == 0)) {
 			r.status = "KO : Service not found";
 			theTest.save();
-			theTest = Test.find.byId(theTest.id);
-			return returnJson("KO", "Service not found", theTest);
+			//theTest = Test.find.byId(theTest.id);
+			return returnJson("KO", "Service not found", url);
 		}
 
 		// get the last OK file for this URL
